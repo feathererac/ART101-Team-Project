@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Gambo's Dream Machine</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <link rel="stylesheet" type="text/css" href="css/index.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="./js/lab.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambo</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script type="text/javascript" src="./js/script.js" defer=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/jquery.autoscroll.js"></script>
 </head>
 <body>
-
-<h2>Gambo's Dream Machine</h2>
-<p>Hi!!</p>
-
-
+  <div class="game-container">
+    <h1>Gambo</h1>
+    <div class="slot-machine">
+        <div class="slots">
+            <div id="slot1" class="slot">🍒</div>
+            <div id="slot2" class="slot">🍋</div>
+            <div id="slot3" class="slot">🍉</div>
+        </div>
+        <div id="lever" class="lever"></div>
+        <button id="lever-button" class="game-button">Pull Lever</button>
+        <p id="token-counter">GamBits: 20</p>
+        <p id="message"></p>
+    </div>
+  </div>
 </body>
 </html>
