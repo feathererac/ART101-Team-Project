@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Game Over</h1>
+        <p>You have sold everything and have no tokens left.</p>
+        <button id="restart-button" class="game-button" onclick="restartGame()">Restart</button>
+    </div>
+
+    <script>
+        // Restart the game by redirecting to the main game page
+        function restartGame() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

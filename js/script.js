@@ -6,9 +6,17 @@ const lever = document.getElementById("lever");
 const slotMachineContainer = document.getElementById("slot-machine-container");
 const desperateOptions = document.getElementById("desperate-options");
 
+let winProbability = 1; // Base win probability (1 = 100%)
+let itemsSold = 0; // Counter for items sold
+
 // Function to update the token counter on the screen
 function updateTokenDisplay() {
     tokenCounter.textContent = `GamBits: ${tokens}`;
+}
+
+// Function to calculate whether the player wins
+function isWin() {
+    return Math.random() < winProbability;
 }
 
 // Function to spin the slots and update the display
@@ -26,11 +34,11 @@ function spinSlots() {
 
     // Evaluate the result
     const [slot1, slot2, slot3] = slots.map(slot => slot.textContent);
-    if (slot1 === slot2 && slot2 === slot3) {
+    if (slot1 === slot2 && slot2 === slot3 && isWin()) {
         message.textContent = "JACKPOT! You win 20 tokens!";
         tokens += 20; // Add tokens on jackpot
-    } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
-        message.textContent = "It's okay, go for it!";
+    } else if ((slot1 === slot2 || slot2 === slot3 || slot1 === slot3) && isWin()) {
+        message.textContent = "Nice try!";
     } else {
         message.textContent = "Try again!";
     }
@@ -43,6 +51,23 @@ function pullLever() {
     setTimeout(() => {
         lever.style.transform = "rotate(0deg)";
     }, 500);
+}
+
+// Multi-spin functionality
+function multiSpin(times) {
+    if (tokens < times) {
+        message.textContent = "Not enough tokens!";
+        return;
+    }
+
+    tokens -= times; // Deduct tokens for the spins
+    updateTokenDisplay();
+
+    for (let i = 0; i < times; i++) {
+        setTimeout(() => {
+            spinSlots();
+        }, i * 500); // Delay each spin
+    }
 }
 
 // Function to show the desperate options
@@ -66,15 +91,21 @@ function sellItem(itemId, itemName, tokenAmount) {
     button.textContent = `${itemName} SOLD`; // Update button text
     button.style.opacity = 0.5; // Make it look disabled
 
-    // Immediately restore the game after selling
+    // Decrease probability of winning
+    itemsSold += 1;
+    winProbability = Math.max(0.1, winProbability - 0.15); // Minimum probability is 10%
+
+    // Restore the game after selling
     restoreGameContainer();
 }
+
 
 
 // Function to restore the slot machine
 function restoreGameContainer() {
     desperateOptions.style.display = "none"; // Hide desperate options
     slotMachineContainer.style.display = "block"; // Show slot machine
+    message.textContent = ""; // Clear any lingering messages
 }
 
 // Add event listeners for the desperate options
@@ -84,6 +115,10 @@ document.getElementById("sell-car").addEventListener("click", () => sellItem("se
 document.getElementById("sell-house").addEventListener("click", () => sellItem("sell-house", "house", 100));
 document.getElementById("sell-soul").addEventListener("click", () => sellItem("sell-soul", "soul", 1000));
 
+// Add event listeners for multi-spin buttons
+document.getElementById("spin-10").addEventListener("click", () => multiSpin(10));
+document.getElementById("spin-100").addEventListener("click", () => multiSpin(100));
+
 // Modify the lever button logic
 document.getElementById("lever-button").addEventListener("click", () => {
     if (tokens > 0) {
@@ -92,9 +127,19 @@ document.getElementById("lever-button").addEventListener("click", () => {
         pullLever();
         setTimeout(spinSlots, 500); // Spin slots after lever animation
     } else {
-        showDesperateOptions(); // Show options when out of tokens
+        // Check if all items are sold and tokens are 0
+        const allButtonsDisabled = [...document.querySelectorAll("#desperate-options button")]
+            .every(btn => btn.disabled);
+
+        if (allButtonsDisabled && tokens === 0) {
+            // Redirect to Game Over page
+            window.location.href = "gameover.html";
+        } else {
+            showDesperateOptions(); // Show options if not game over
+        }
     }
 });
+
 
 updateTokenDisplay();
 
