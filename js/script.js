@@ -41,6 +41,7 @@ function spinSlots() {
         message.textContent = "Nice try!";
     } else {
         message.textContent = "Try again!";
+        showCharacterMessage("You will have better luck next time!");
     }
     updateTokenDisplay();
 }
@@ -95,6 +96,13 @@ function sellItem(itemId, itemName, tokenAmount) {
     itemsSold += 1;
     winProbability = Math.max(0.1, winProbability - 0.15); // Minimum probability is 10%
 
+    // Trigger specific character messages based on the item sold
+    if (itemName === "car") {
+        showWifeMessage(); // Show the disappointed wife
+    } else if (itemName === "house") {
+        showFatherMessage(); // Show the disappointed father
+    }
+
     // Restore the game after selling
     restoreGameContainer();
 }
@@ -140,6 +148,38 @@ document.getElementById("lever-button").addEventListener("click", () => {
     }
 });
 
+//Character
+function showCharacterMessage(messageText) {
+    const popup = document.getElementById("character-popup");
+    const speechBubble = popup.querySelector(".speech-bubble");
+
+    speechBubble.textContent = messageText;
+    popup.style.display = "block";
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+}
+function showWifeMessage() {
+    const popup = document.getElementById("wife-popup");
+    popup.style.display = "block";
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+}
+
+function showFatherMessage() {
+    const popup = document.getElementById("father-popup");
+    popup.style.display = "block";
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+}
 
 updateTokenDisplay();
 

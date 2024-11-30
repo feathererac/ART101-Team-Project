@@ -10,25 +10,58 @@
 </head>
 <body>
   <div class="game-container">
+    <!-- Main container for the slot machine -->
     <div id="slot-machine-container">
-      <h1>Gambo</h1>
+      <h1>Gambo</h1> <!-- Game title -->
       <div class="slot-machine">
-          <div class="slots">
-              <div id="slot1" class="slot">🍒</div>
-              <div id="slot2" class="slot">🍋</div>
-              <div id="slot3" class="slot">🍉</div>
-          </div>
-          <div id="lever" class="lever"></div>
-          <p><button id="lever-button" class="game-button">Pull Lever</button></p>
-          <p><button id="spin-10" class="game-button">Spin 10 Times</button></p>
-          <p><button id="spin-100" class="game-button">Spin 100 Times</button></p>
-          <p id="token-counter">GamBits: 20</p>
-          <p id="message"></p>
+        
+        <!-- Popup for generic character messages -->
+        <div id="character-popup" class="character-popup" style="display: none;">
+          <div class="character">🤔</div>
+          <div class="speech-bubble">You will have better luck next time!</div>
+        </div>
+
+        <!-- Popup for the disappointed wife -->
+        <div id="wife-popup" class="character-popup" style="display: none;">
+          <div class="character">💔</div>
+          <div class="speech-bubble">"That's it. I want a divorce."</div>
+        </div>
+
+        <!-- Popup for the disappointed father -->
+        <div id="father-popup" class="character-popup" style="display: none;">
+          <div class="character">👻</div>
+          <div class="speech-bubble">"You've let me down, my child."</div>
+        </div>
+
+        <!-- Slot display area -->
+        <div class="slots">
+          <!-- Individual slots for the slot machine -->
+          <div id="slot1" class="slot">🍒</div>
+          <div id="slot2" class="slot">🍋</div>
+          <div id="slot3" class="slot">🍉</div>
+        </div>
+
+        <!-- Slot machine lever -->
+        <div id="lever" class="lever"></div>
+
+        <!-- Buttons for gameplay -->
+        <p><button id="lever-button" class="game-button">Pull Lever</button></p> <!-- Single spin -->
+        <p><button id="spin-10" class="game-button">Spin 10 Times</button></p> <!-- Spin 10 times -->
+        <p><button id="spin-100" class="game-button">Spin 100 Times</button></p> <!-- Spin 100 times -->
+
+        <!-- Display current token count -->
+        <p id="token-counter">GamBits: 20</p>
+        
+        <!-- Message area for displaying game feedback -->
+        <p id="message"></p>
       </div>
-  </div>
+    </div>
+
+    <!-- Section for desperate options when out of tokens -->
     <div id="desperate-options" style="display: none;">
         <h2>You're out of tokens!</h2>
         <p>Would you like to play again?</p>
+        <!-- Buttons for selling items to get more tokens -->
         <button id="sell-watch" class="game-button">Sell Watch</button>
         <button id="sell-phone" class="game-button">Sell Phone</button>
         <button id="sell-car" class="game-button">Sell Car</button>
