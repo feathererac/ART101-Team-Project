@@ -56,18 +56,25 @@ function pullLever() {
 
 // Multi-spin functionality
 function multiSpin(times) {
-    if (tokens < times) {
+    if (tokens <= 0) {
         message.textContent = "Not enough tokens!";
         return;
     }
 
-    tokens -= times; // Deduct tokens for the spins
+    const spinsToPerform = Math.min(tokens, times); // Determine how many spins are possible
+    tokens -= spinsToPerform; // Deduct the tokens for the actual number of spins
     updateTokenDisplay();
 
-    for (let i = 0; i < times; i++) {
+    for (let i = 0; i < spinsToPerform; i++) {
         setTimeout(() => {
             spinSlots();
-        }, i * 500); // Delay each spin
+        }, i * 50); // Delay each spin
+    }
+
+    if (spinsToPerform < times) {
+        message.textContent = "Performed fewer spins due to insufficient tokens.";
+    } else {
+        message.textContent = "";
     }
 }
 
@@ -180,6 +187,26 @@ function showFatherMessage() {
         popup.style.display = "none";
     }, 3000);
 }
+
+
+//Gambo Codes
+const gamboGif = document.getElementById("gambo-gif");
+
+// Function to show the desperate options (Shop)
+function showDesperateOptions() {
+    slotMachineContainer.style.display = "none"; // Hide slot machine
+    gamboGif.style.display = "none"; // Hide the Gambo GIF
+    desperateOptions.style.display = "block"; // Show desperate options
+}
+
+// Function to restore the slot machine
+function restoreGameContainer() {
+    desperateOptions.style.display = "none"; // Hide desperate options
+    slotMachineContainer.style.display = "block"; // Show slot machine
+    gamboGif.style.display = "block"; // Show the Gambo GIF
+    message.textContent = ""; // Clear any lingering messages
+}
+
 
 updateTokenDisplay();
 

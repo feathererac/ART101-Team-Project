@@ -96,6 +96,19 @@ button:hover {
     font-size: 50px;
 }
 
+.gambo-container {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+#gambo-gif {
+    width: 300px; /* Adjust size */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure it is visible by default */
+}
+
 .speech-bubble {
     position: relative;
     background: #fff;
