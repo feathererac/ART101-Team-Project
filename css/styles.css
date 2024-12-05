@@ -82,16 +82,6 @@ button:hover {
     color: #444;
 }
 
-.character-popup {
-    position: absolute;
-    top: 50px;
-    left: -300px;
-    transform: translateX(-50%);
-    z-index: 10;
-    text-align: center;
-    animation: fadeInOut 5s ease-in-out;
-}
-
 .character {
     font-size: 50px;
 }
@@ -104,9 +94,9 @@ button:hover {
 }
 
 #gambo-gif {
-    width: 300px; /* Adjust size */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Ensure it is visible by default */
+    width: 500px; 
+    height: auto; 
+    display: block; 
 }
 
 .speech-bubble {
@@ -129,6 +119,15 @@ button:hover {
     100% { opacity: 0; transform: translateY(-20px); }
 }
 
+#wife-popup {
+    position: absolute;
+    top: 20%;
+    right: -200%;
+    transform: translateY(-50%);
+    z-index: 10;
+    text-align: left;
+}
+
 #wife-popup .character {
     font-size: 50px;
     color: #e63946;
@@ -138,6 +137,15 @@ button:hover {
     background: #ffe6e6;
     border-color: #e63946;
     color: #e63946;
+}
+
+#father-popup {
+    position: absolute;
+    top: 20%;
+    right: -200%;
+    transform: translateY(-50%);
+    z-index: 10;
+    text-align: left;
 }
 
 #father-popup .character {
