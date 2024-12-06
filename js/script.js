@@ -128,7 +128,6 @@ $(document).ready(function () {
         updateTokenDisplay();
         $("#message").text(`You sold your ${itemName} for ${tokenAmount} tokens. Keep spinning!`);
         $(`#${itemId}`).prop("disabled", true).text(`${itemName} SOLD`).css("opacity", 0.5);
-        showGamboMessage("Money! Money! Money!");
 
         itemsSold += 1;
         winProbability = Math.max(0.1, winProbability - 0.15);
@@ -167,7 +166,7 @@ $(document).ready(function () {
         },
         function () {
             // Optionally clear the message after hover
-            $("#gambo-bubble").text("");
+            $("#gambo-bubble").text("Money! Money! Money!");
         }
     );
 

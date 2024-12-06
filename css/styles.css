@@ -10,7 +10,7 @@ body {
 /* Anaglyph Effect for Titles */
 .anaglyph-title {
     font-family: 'Luckiest Guy', cursive;
-    color: #af1c1c;
+    color: #e21f1f;
     font-size: 3rem;
     position: relative;
     text-transform: uppercase;
@@ -87,7 +87,9 @@ body {
 .lever {
     width: 10px;
     height: 100px;
-    background: #888;
+    background-color: #d30707;
+    border: 2px solid #000000;
+    border-radius: 3px;
     position: absolute;
     right: -30px;
     top: 20px;
@@ -100,6 +102,7 @@ button {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 18px;
+    font-family: 'Luckiest Guy', cursive;
     cursor: pointer;
     border: none;
     border-radius: 5px;
