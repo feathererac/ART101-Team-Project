@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Over</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="game-container">
-        <h1>Game Over</h1>
+        <h1 class="anaglyph-title">Game Over</h1>
         <p>You have sold everything and have no tokens left.</p>
 
         <!-- Gambo Message Section -->
@@ -18,6 +20,11 @@
                 <a>Gambo: </a>
                 <div id="gambo-bubble" class="speech-bubble">"Well, Better Luck Next Time!”</div>
             </div>
+        </div>
+
+        <!-- Add the PNG receipt here -->
+        <div class="receipt-image-container">
+            <img src="./img/receipt.png" alt="Game Over Receipt" class="receipt-image">
         </div>
 
         <button id="restart-button" class="game-button" onclick="restartGame()">Restart</button>

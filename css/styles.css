@@ -1,9 +1,20 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Fredoka One', sans-serif;
+    color: #af1c1c;
     text-align: center;
-    background-color: #f4f4f9;
+    background-color: #888888;
     margin: 0;
     padding: 0;
+}
+
+/* Anaglyph Effect for Titles */
+.anaglyph-title {
+    font-family: 'Luckiest Guy', cursive;
+    color: #af1c1c;
+    font-size: 3rem;
+    position: relative;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0px rgb(0, 0, 0), -3px -3px 0px rgb(204, 204, 204);
 }
 
 .game-container {
@@ -18,6 +29,30 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
+.desperate-options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.desperate-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid black; 
+    border-radius: 10px;
+}
+
+.item-image {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
 
 .slot-machine {
     display: inline-block;
@@ -68,12 +103,12 @@ button {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-color: #0078D7;
+    background-color: #c90101;
     color: white;
 }
 
 button:hover {
-    background-color: #005BBB;
+    background-color: #f53434;
 }
 
 .message {
@@ -99,6 +134,18 @@ button:hover {
     display: block; 
 }
 
+.receipt-image-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.receipt-image {
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+
+
 .speech-bubble {
     position: relative;
     background: #fff;
@@ -121,9 +168,8 @@ button:hover {
 
 #wife-popup {
     position: absolute;
-    top: 20%;
-    right: -200%;
-    transform: translateY(-50%);
+    top: 10%;
+    right: -180%;
     z-index: 10;
     text-align: left;
 }
@@ -141,9 +187,8 @@ button:hover {
 
 #father-popup {
     position: absolute;
-    top: 20%;
-    right: -200%;
-    transform: translateY(-50%);
+    top: 40%;
+    right: -180%;
     z-index: 10;
     text-align: left;
 }

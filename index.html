@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gambo</title>
+    <title>Gambo's Dream Mechine</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka+One&display=swap" rel="stylesheet">
     <script type="text/javascript" src="./js/script.js" defer=""></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -12,7 +13,7 @@
   <div class="game-container">
     <!-- Main container for the slot machine -->
     <div id="slot-machine-container">
-      <h1>Gambo's Dream Machine</h1> <!-- Game title -->
+      <h1 class="anaglyph-title">Gambo's Dream Machine</h1> <!-- Game title -->
       <div class="slot-machine">
 
         <!-- Popup for the disappointed wife -->
@@ -56,13 +57,34 @@
     <div id="desperate-options" style="display: none;">
       <h2>You're out of tokens!</h2>
       <p>Would you like to play again?</p>
-      <!-- Buttons for selling items to get more tokens --> 
-      <button id="sell-phone" class="game-button">Sell Phone</button>
-      <button id="sell-car" class="game-button">Sell Car</button>
-      <button id="sell-wife" class="game-button">Sell Wife</button>
-      <button id="sell-house" class="game-button">Sell House</button>
-      <button id="sell-soul" class="game-button">Sell Soul</button>
+      <div class="desperate-options-container">
+        <div class="desperate-option">
+          <img src="./img/phone.png" alt="Phone" class="item-image">
+          <button id="sell-phone" class="game-button">Sell Phone</button>
+        </div>
+      
+        <div class="desperate-option">
+          <img src="./img/car.png" alt="Car" class="item-image">
+          <button id="sell-car" class="game-button">Sell Car</button>
+        </div>
+    
+        <div class="desperate-option">
+          <img src="./img/wife.png" alt="Wife" class="item-image">
+          <button id="sell-wife" class="game-button">Sell Wife</button>
+        </div>
+    
+        <div class="desperate-option">
+          <img src="./img/house.png" alt="House" class="item-image">
+          <button id="sell-house" class="game-button">Sell House</button>
+        </div>
+    
+        <div class="desperate-option">
+          <img src="./img/soul.png" alt="Soul" class="item-image">
+          <button id="sell-soul" class="game-button">Sell Soul</button>
+        </div>
+      </div>
     </div>
+    
     <div class="gambo-container">
       <img id="gambo-gif" src="./img/gambo.gif" alt="Gambo mascot">
       <div id="gambo-speech" class="gambo-speech">
