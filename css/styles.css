@@ -1,12 +1,22 @@
 body {
     font-family: 'Fredoka One', sans-serif;
-    color: #af1c1c;
+    color: #dd0000;
     text-align: center;
     background-color: #888888;
     margin: 0;
     padding: 0;
 }
 
+main{
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    border-color: #ffffff;
+    border-radius: 5px;
+    background-color: #dd0000;
+}
 /* Anaglyph Effect for Titles */
 .anaglyph-title {
     font-family: 'Luckiest Guy', cursive;
