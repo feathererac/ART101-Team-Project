@@ -184,7 +184,7 @@ button:hover {
 #wife-popup {
     position: absolute;
     top: 10%;
-    right: -180%;
+    right: -70%;
     z-index: 10;
     text-align: left;
 }
@@ -203,7 +203,7 @@ button:hover {
 #father-popup {
     position: absolute;
     top: 40%;
-    right: -180%;
+    right: -70%;
     z-index: 10;
     text-align: left;
 }
