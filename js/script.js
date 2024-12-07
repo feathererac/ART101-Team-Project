@@ -44,19 +44,38 @@ $(document).ready(function () {
     function spinSlots() {
         // Clear Gambo's current message if it exists
         $("#gambo-speech").stop(true, true).hide();
-
+    
         const $slots = $(".slot");
+        let slotValues = [];
+    
+        // Randomly assign symbols to slots
         $slots.each(function () {
             $(this).text(slotSymbols[Math.floor(Math.random() * slotSymbols.length)]);
         });
-
-        const slotValues = $slots.map((_, el) => $(el).text()).get();
-        if (slotValues[0] === slotValues[1] && slotValues[1] === slotValues[2] && isWin()) {
-            tokens += 20;
-            showGamboMessage("JACKPOT! Congratulations! Drinks on me?");
-        } else if ((slotValues[0] === slotValues[1] || slotValues[1] === slotValues[2] || slotValues[0] === slotValues[2]) && isWin()) {
+    
+        // Get the values of the slots
+        slotValues = $slots.map((_, el) => $(el).text()).get();
+    
+        // Check if all symbols match and isWin = True
+        if (slotValues[0] === slotValues[1] && slotValues[1] === slotValues[2]) {
+            if (isWin()) {
+                tokens += 20; // Jackpot
+                showGamboMessage("JACKPOT! Congratulations! Drinks on me?");
+            } else {
+                // If isWin is false, adjust the slots to not show three matching symbols
+                let newSymbol;
+                do {
+                    newSymbol = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+                } while (newSymbol === slotValues[0]); // Ensure the new symbol is different
+                slotValues[2] = newSymbol;
+                $slots.eq(2).text(newSymbol); // Update the third slot
+                showGamboMessage("Keep going!");
+            }
+        } 
+        else if (slotValues[0] === slotValues[1] || slotValues[1] === slotValues[2] || slotValues[0] === slotValues[2]){
             showGamboMessage("Ooh! So close!");
-        } else {
+        } 
+        else {
             showGamboMessage("Keep going!");
         }
         updateTokenDisplay();
