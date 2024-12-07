@@ -53,7 +53,6 @@ $(document).ready(function () {
 
     // Multi-spin
     $("#spin-10").click(() => multiSpin(10));
-    $("#spin-100").click(() => multiSpin(100));
     function multiSpin(times) {
         if (tokens <= 0) {
             showGamboMessage("Well, ain't that a shame.");
