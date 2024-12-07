@@ -1,4 +1,5 @@
-//Gambo's mechine main functions---->
+
+//Gambo's machine main functions---->
 $(document).ready(function () {
     let tokens = 20;
     const slotSymbols = ["🍒", "🍋", "🍉", "⭐", "🍇"];
