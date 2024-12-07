@@ -175,7 +175,7 @@ $(document).ready(function () {
         $(`#${itemId}`).prop("disabled", true).text(`${itemName} SOLD`).css("opacity", 0.5);
 
         itemsSold += 1;
-        winProbability = Math.max(0.1, winProbability - 0.15);
+        winProbability = Math.max(0.1, winProbability - 0.18);
 
         if (itemName === "wife") showWifeMessage();
         if (itemName === "house") showFatherMessage();
