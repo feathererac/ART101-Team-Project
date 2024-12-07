@@ -169,6 +169,7 @@ button:hover {
     font-size: 16px;
     margin-top: 10px;
     color: #444;
+    max-width: 200px;
 }
 
 /* Animation */
