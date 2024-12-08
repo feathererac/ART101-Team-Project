@@ -51,182 +51,139 @@ $(document).ready(function () {
         updateTokenDisplay();
     }
 
-    // Multi-spin
-    $("#spin-10").click(() => multiSpin(10));
-    function multiSpin(times) {
-        if (tokens <= 0) {
-            showGamboMessage("Well, ain't that a shame.");
-            $("#message").text("Not enough tokens!");
-            return;
-        }
+ // Multi-spin
+ $("#spin-10").click(() => multiSpin(10));
 
-        const spinsToPerform = Math.min(tokens, times);
-        tokens -= spinsToPerform;
-        updateTokenDisplay();
+ function multiSpin(times) {
+     if (tokens <= 0) {
+         showGamboMessage("Well, ain't that a shame.");
+         $("#message").text("Not enough tokens!");
+         return;
+     }
 
-        showGamboMessage("Tick-tock! Time is money!");
+     const spinsToPerform = Math.min(tokens, times);
+     tokens -= spinsToPerform;
+     updateTokenDisplay();
 
-        for (let i = 0; i < spinsToPerform; i++) {
-            setTimeout(spinSlots, i * 50);
-        }
+     showGamboMessage("Tick-tock! Time is money!");
 
-        if (spinsToPerform < times) {
-            $("#message").text("Performed fewer spins due to insufficient tokens.");
-        } else {
-            $("#message").text("");
-        }
-    }
+     for (let i = 0; i < spinsToPerform; i++) {
+         setTimeout(spinSlots, i * 50);
+     }
 
-    // Calculate whether the player wins
-    function isWin() {
-        return Math.random() < winProbability;
-    }
+     $("#message").text(spinsToPerform < times ? "Performed fewer spins due to insufficient tokens." : "");
+ }
 
-    // Animate the lever
-    function pullLever() {
-        $("#lever").css("transform", "rotate(45deg)");
-        setTimeout(() => {
-            $("#lever").css("transform", "rotate(0deg)");
-        }, 500);
-    }
+ // Calculate whether the player wins
+ function isWin() {
+     return Math.random() < winProbability;
+ }
 
+ // Animate the lever
+ function pullLever() {
+     $("#lever").css("transform", "rotate(45deg)");
+     setTimeout(() => $("#lever").css("transform", "rotate(0deg)"), 500);
+ }
 
-//Shop---->
-    // DesperateOptions Event listeners
-    $("#lever-button").click(() => {
-        if (tokens > 0) {
-            tokens -= 1;
-            updateTokenDisplay();
-            pullLever();
-            setTimeout(spinSlots, 500);
-        } else {
-            // Only show desperate options if tokens are 0
-            toggleDesperateOptions(true);
-        }
-    });
-    
-    // Event listeners for shop item hover
-    $("#desperate-options button").hover(
-        function () {
-            const id = $(this).attr("id");
-            const hoverMessages = {
-                "sell-phone": "It's the new Pear Phone Pro Deluxe Max!",
-                "sell-car": "Your good ol' 2014 Hondunny Civil.",
-                "sell-wife": "Selling your wife might be just what you need to keep playing!",
-                "sell-house": "Sell your house? In this economy? Brilliant move to keep playing!",
-                "sell-soul": "..."
-            };
-            const message = hoverMessages[id];
-            if (message) {
-                showGamboMessage(message);
-            }
-        },
-        function () {
-            // Optionally clear the message after hover
-            $("#gambo-bubble").text("Money! Money! Money!");
-        }
-    );
+ // Shop---->
+ $("#lever-button").click(() => {
+     if (tokens > 0) {
+         tokens -= 1;
+         updateTokenDisplay();
+         pullLever();
+         setTimeout(spinSlots, 500);
+     } else {
+         toggleDesperateOptions(true);
+     }
+ });
 
-    $("#desperate-options button").click(function () {
-        const id = $(this).attr("id");
-        const itemMap = {
-            "sell-phone": { name: "phone", tokens: 10 },
-            "sell-car": { name: "car", tokens: 50 },
-            "sell-wife": { name: "wife", tokens: 100 },
-            "sell-house": { name: "house", tokens: 200 },
-            "sell-soul": { name: "soul", tokens: 1000 },
-        };
-        const item = itemMap[id];
-        if (item) sellItem(id, item.name, item.tokens);
-    });
+ $("#desperate-options button").hover(
+     function () {
+         const id = $(this).attr("id");
+         const hoverMessages = {
+             "sell-phone": "It's the new Pear Phone Pro Deluxe Max!",
+             "sell-car": "Your good ol' 2014 Hondunny Civil.",
+             "sell-wife": "Selling your wife might be just what you need to keep playing!",
+             "sell-house": "Sell your house? In this economy? Brilliant move to keep playing!",
+             "sell-soul": "..."
+         };
+         showGamboMessage(hoverMessages[id] || "Money! Money! Money!");
+     },
+     () => $("#gambo-bubble").text("Money! Money! Money!")
+ );
 
-    // Show or hide desperate options and shop items
-    function toggleDesperateOptions(show) {
-        $("#slot-machine-container").toggle(!show);
-        $("#gambo-gif, #gambo-speech").show(); // Gambo remains visible in shop
-        $("#desperate-options").toggle(show);
+ $("#desperate-options button").click(function () {
+     const itemMap = {
+         "sell-phone": { name: "phone", tokens: 10 },
+         "sell-car": { name: "car", tokens: 50 },
+         "sell-wife": { name: "wife", tokens: 100 },
+         "sell-house": { name: "house", tokens: 200 },
+         "sell-soul": { name: "soul", tokens: 1000 }
+     };
+     const item = itemMap[$(this).attr("id")];
+     if (item) sellItem(item.name, item.tokens, $(this));
+ });
 
-        if (show) {
-            // Set timeout for Gambo's message if player waits too long in the shop
-            gamboShopTimeout = setTimeout(() => {
-                showGamboMessage("Tick-tock! Time is money!");
-            }, 5000);
+ function toggleDesperateOptions(show) {
+     $("#slot-machine-container").toggle(!show);
+     $("#gambo-gif, #gambo-speech").show();
+     $("#desperate-options").toggle(show);
 
-            // Check if only the soul is left and display Gambo's special message
-            const allDisabledExceptSoul = $("#desperate-options button")
-                .toArray()
-                .filter(btn => !$(btn).prop("disabled"))
-                .map(btn => $(btn).attr("id"))
-                .includes("sell-soul");
+     if (show) {
+         gamboShopTimeout = setTimeout(() => showGamboMessage("Tick-tock! Time is money!"), 5000);
 
-            if (allDisabledExceptSoul) {
-                showGamboMessage("99% of Gamblers Quit Before They Make It Big!");
-            }
-        } else {
-            clearTimeout(gamboShopTimeout);
-        }
-    }
+         if ($("#desperate-options button:not(:disabled)").length === 1) {
+             showGamboMessage("99% of Gamblers Quit Before They Make It Big!");
+         }
+     } else {
+         clearTimeout(gamboShopTimeout);
+     }
+ }
 
-    // Sell an item
-    function sellItem(itemId, itemName, tokenAmount) {
-        tokens += tokenAmount;
-        updateTokenDisplay();
-        $("#message").text(`You sold your ${itemName} for ${tokenAmount} tokens. Keep spinning!`);
-        $(`#${itemId}`).prop("disabled", true).text(`${itemName} SOLD`).css("opacity", 0.5);
+ function sellItem(name, tokenAmount, button) {
+     tokens += tokenAmount;
+     updateTokenDisplay();
+     $("#message").text(`You sold your ${name} for ${tokenAmount} tokens. Keep spinning!`);
+     button.prop("disabled", true).text(`${name.toUpperCase()} SOLD`).css("opacity", 0.5);
 
-        itemsSold += 1;
-        winProbability = Math.max(0.1, winProbability - 0.18);
+     itemsSold += 1;
+     winProbability = Math.max(0.1, winProbability - 0.18);
 
-        if (itemName === "wife") showWifeMessage();
-        if (itemName === "house") showFatherMessage();
-        if (itemName === "soul") {
-            // Trigger game over scenario
-            window.location.href = "gameover.html";
-        }
-        toggleDesperateOptions(false);
-    }
+     if (name === "wife") showWifeMessage();
+     if (name === "house") showFatherMessage();
+     if (name === "soul") window.location.href = "gameover.html";
 
-//Messages section---->
-    // Wife and Father dialogues
-    const wifeDialogues = ["Wife: What are you doing? Does this marriage mean anything to you? I want a divorce!"];
-    let wifeDialogueIndex = 0;
+     toggleDesperateOptions(false);
+ }
 
-    const fatherDialogues = ["Father ghost: This isn't worth it. Think about what you're doing. Think of me, and your mother!"];
-    let fatherDialogueIndex = 0;
-    let gamboShopTimeout;
+ // Messages section---->
+ const wifeDialogues = ["Wife: What are you doing? Does this marriage mean anything to you? I want a divorce!"];
+ const fatherDialogues = ["Father ghost: This isn't worth it. Think about what you're doing. Think of me, and your mother!"];
+ let wifeDialogueIndex = 0;
+ let fatherDialogueIndex = 0;
 
-    // Function to display character messages sequentially and persist until clicked
-    function showWifeMessage() {
-        if (wifeDialogueIndex < wifeDialogues.length) {
-            $("#wife-popup .speech-bubble").text(wifeDialogues[wifeDialogueIndex]);
-            $("#wife-popup").fadeIn(300);
-            wifeDialogueIndex++;
-        }
-    }
+ function showWifeMessage() {
+     if (wifeDialogueIndex < wifeDialogues.length) {
+         $("#wife-popup .speech-bubble").text(wifeDialogues[wifeDialogueIndex++]);
+         $("#wife-popup").fadeIn(300);
+     }
+ }
 
-    function showFatherMessage() {
-        if (fatherDialogueIndex < fatherDialogues.length) {
-            $("#father-popup .speech-bubble").text(fatherDialogues[fatherDialogueIndex]);
-            $("#father-popup").fadeIn(300);
-            fatherDialogueIndex++;
-        }
-    }
-    // Make wife and father popups hide when clicked
-    $("#wife-popup").click(function () {
-        $(this).fadeOut(300);
-    });
+ function showFatherMessage() {
+     if (fatherDialogueIndex < fatherDialogues.length) {
+         $("#father-popup .speech-bubble").text(fatherDialogues[fatherDialogueIndex++]);
+         $("#father-popup").fadeIn(300);
+     }
+ }
 
-    $("#father-popup").click(function () {
-        $(this).fadeOut(300);
-    });
+ $("#wife-popup, #father-popup").click(function () {
+     $(this).fadeOut(300);
+ });
 
-    // Function to display Gambo's message and hide previous messages if interrupted
-    function showGamboMessage(text) {
-        // Clear current message and animations
-        $("#gambo-bubble").stop(true, true).text(text);
-        $("#gambo-speech").fadeIn(300);
-    }
+ function showGamboMessage(text) {
+     $("#gambo-bubble").stop(true, true).text(text);
+     $("#gambo-speech").fadeIn(300);
+ }
 
-    // Initial display update
-    updateTokenDisplay();
+ updateTokenDisplay();
 });
