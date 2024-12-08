@@ -2,9 +2,12 @@ body {
     font-family: 'Fredoka One', sans-serif;
     color: #dd0000;
     text-align: center;
-    background-color: #888888;
     margin: 0;
     padding: 0;
+    background-image: url('../img/bg.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
 
 main{
@@ -34,7 +37,7 @@ main{
 
 .GamboMachine {
     position: relative;
-    max-width: 500px;
+    max-width: 480px;
     display: block;
     margin: 0 auto;
     z-index: -10; /* Keeps it behind the slots */
@@ -81,15 +84,15 @@ main{
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 210px; /* Adjust this value to move the slots vertically */
+    top: 210px; 
     left: 51%;
     transform: translateX(-50%);
-    gap: 10px;
+    gap: 15px;
 }
 
 .slot {
     font-size: 40px;
-    width: 60px; /* Adjust size to match the hole dimensions */
+    width: 60px; 
     height: 60px;
     display: flex;
     justify-content: center;
