@@ -10,6 +10,25 @@ body {
     background-repeat: no-repeat; 
 }
 
+#start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+
+.start-image {
+    width: 40%; /* Make the image larger */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Makes the image look clickable */
+    transition: transform 0.3s ease;
+}
+
+.start-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
 .gameover-text {
     color: white; 
     background-color: #dd0000; 

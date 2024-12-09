@@ -1,6 +1,14 @@
 
 //Gambo's machine main functions---->
 $(document).ready(function () {
+
+    //Start Screen
+    $("#start-image").click(function () {
+        $("#start-screen").hide(); // Hide the start screen
+        $(".game-container").show(); // Show the game container
+    });
+
+
     let tokens = 20;
     const slotSymbols = ["🍒", "🍋", "🍉", "⭐", "🍇"];
     let winProbability = 1; // Base win probability

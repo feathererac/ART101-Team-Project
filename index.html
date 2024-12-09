@@ -10,10 +10,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <div class="game-container">
+  <!-- Start screen -->
+  <div id="start-screen">
+    <img id="start-image" src="./img/start.png" alt="Start Image" class="start-image">
+  </div>
+
+  <!-- Game container -->
+  <div class="game-container" style="display: none;">
     <!-- Main container for the slot machine -->
     <div id="slot-machine-container">
-      <h1 class="anaglyph-title">Gambo's Dream Machine</h1> <!-- Game title -->
       <div class="slot-machine">
 
         <!-- Popup for the disappointed wife -->
