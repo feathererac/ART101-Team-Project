@@ -5,8 +5,8 @@ $(document).ready(function () {
 
     //Start Screen
     $("#start-image").click(function () {
-        $("#start-screen").hide(); // Hide the start screen
-        $(".game-container").show(); // Show the game container
+        $("#start-screen").hide();
+        $(".game-container").show();
     });
 
 
