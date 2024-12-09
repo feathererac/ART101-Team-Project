@@ -12,18 +12,25 @@ body {
 
 #start-screen {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
 }
 
-.start-image {
-    width: 40%;
+.start-image{
+    width: 35%;
+    height: auto;
+}
+
+.playbutton {
+    width: 15%;
     height: auto; 
     cursor: pointer; 
     transition: transform 0.3s ease;
 }
 
-.start-image:hover {
+.playbutton:hover {
     transform: scale(1.1);
 }
 
