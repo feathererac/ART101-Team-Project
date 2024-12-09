@@ -36,20 +36,57 @@ body {
     font-size: 18px;
   }
 
+  .Gamblers-text {
+    color: rgb(255, 255, 255);
+    background-color: #dd0000;
+    display: inline-block;
+    font-family: 'Luckiest Guy', cursive;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 30px;
+
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
+                 0 0 20px rgba(255, 0, 0, 0.8),
+                 0 0 30px rgba(255, 0, 0, 0.6);
+
+
+    animation: breathingGlow 3s infinite ease-in-out;
+}
+
+@keyframes breathingGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
+                     0 0 20px rgba(255, 0, 0, 0.8),
+                     0 0 30px rgba(255, 0, 0, 0.6);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1), 
+                     0 0 40px rgba(255, 0, 0, 1),
+                     0 0 60px rgba(255, 0, 0, 0.9);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
+                     0 0 20px rgba(255, 0, 0, 0.8),
+                     0 0 30px rgba(255, 0, 0, 0.6);
+    }
+}
+
 main{
     font-family: 'Fredoka One', sans-serif;
     font-size: 18px;
     color: #fff;
     margin-top: 10px;
+    padding: 5px;
     text-align: center;
     border-radius: 5px;
+    display: inline-block; 
     background-color: #dd0000;
 }
 /* Anaglyph Effect for Titles */
 .anaglyph-title {
     font-family: 'Luckiest Guy', cursive;
     color: #e21f1f;
-    font-size: 3rem;
+    font-size: 60px;
     position: relative;
     text-transform: uppercase;
     text-shadow: 3px 3px 0px rgb(0, 0, 0), -3px -3px 0px rgb(204, 204, 204);
