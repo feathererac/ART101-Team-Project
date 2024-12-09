@@ -88,6 +88,10 @@ main{
     display: inline-block; 
     background-color: #dd0000;
 }
+main:empty {
+    display: none;
+}
+
 /* Anaglyph Effect for Titles */
 .anaglyph-title {
     font-family: 'Luckiest Guy', cursive;
