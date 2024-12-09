@@ -1,4 +1,5 @@
 
+
 //Gambo's machine main functions---->
 $(document).ready(function () {
 
